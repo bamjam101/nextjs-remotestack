@@ -1,3 +1,11 @@
+import Link from "next/link";
+
 export default function Home() {
-  return <main>Hi</main>;
+  return (
+    <>
+      <Link href={"/browse"} className="underline blue">
+        Browse for developers
+      </Link>
+    </>
+  );
 }

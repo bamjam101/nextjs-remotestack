@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
       <body
         className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[108px] lg:px-[256px] ${inter.className}`}
       >
+        <Toaster />
         {children}
       </body>
     </html>

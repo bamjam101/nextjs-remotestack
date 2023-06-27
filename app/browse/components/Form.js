@@ -1,16 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
 import useFormData from "@/app/hooks/useFormData";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { BsFillPersonFill, BsPhoneFill } from "react-icons/bs";
 import { FaIndustry } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const Form = () => {
-  const { add } = useFormData();
+  const router = useRouter();
+
+  const { forms, add } = useFormData();
 
   const [contactData, setContactData] = useState({
     email: "",
@@ -59,13 +64,12 @@ const Form = () => {
           />
           <Button
             onClick={() => {
-              add({ stage: 2, data: contactData });
-              setContactData({
-                email: "",
-                company: "",
-                name: "",
-                contact: "",
-              });
+              add({ stage: 3, data: contactData });
+              toast.success(
+                "Details saved.\nThank you for contacting RemoteStack, our team will get back to you ASAP!\nTill then keep innovating 🚀"
+              );
+              console.log(forms);
+              // router.push("/");
             }}
             label="Find the developers you'll like"
           />

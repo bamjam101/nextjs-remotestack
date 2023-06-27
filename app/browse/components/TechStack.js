@@ -6,11 +6,13 @@ import Input from "@/app/components/Input";
 import DropdownSelection from "./DropdownSelection";
 import useFormState from "@/app/hooks/useTechList";
 import Button from "@/app/components/Button";
+import useFormData from "@/app/hooks/useFormData";
 
 const TechStack = ({ setStage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { add, remove, technologies: techs } = useFormState();
+  const { add: append, forms, remove: pop } = useFormData();
+  const { add, technologies: techs } = useFormState();
 
   const [technologies, setTechnologies] = useState([
     { name: "html", isSelected: false },
@@ -122,7 +124,13 @@ const TechStack = ({ setStage }) => {
             label={"Continue"}
             rounded
             large
-            onClick={() => setStage(1)}
+            onClick={() => {
+              setStage(1);
+              if (forms?.length && forms[0].stage === 0) {
+                pop({ stage: 0, data: forms[0].data });
+              }
+              append({ stage: 0, data: techs });
+            }}
           />
         ) : (
           <Button label={"Continue"} rounded large disabled />

@@ -12,13 +12,9 @@ export const metadata = {
 
 export default function BrowseLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[108px] lg:px-[256px] ${inter.className}`}
-      >
-        {children}
-        <Footer progress={""} />
-      </body>
-    </html>
+    <>
+      {children}
+      <Footer progress={""} />
+    </>
   );
 }

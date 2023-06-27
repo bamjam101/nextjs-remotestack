@@ -7,16 +7,15 @@ const SelectCard = ({ icon, label, stage }) => {
   const { add, remove, forms } = useFormData();
 
   const handleTeamData = () => {
-    if (forms.length > stage - 1) {
-      console.log("logging");
-      remove({ stage: stage, data: forms[Number(stage) - 1]?.data });
+    if (forms.length > stage) {
+      remove({ stage: stage, data: forms[Number(stage)]?.data });
     }
     add({ stage: stage, data: label });
   };
 
   useEffect(() => {
     if (forms?.length) {
-      if (forms[Number(stage) - 1]?.data == label) {
+      if (forms[Number(stage)]?.data == label) {
         setIsSelected(true);
       } else {
         setIsSelected(false);
