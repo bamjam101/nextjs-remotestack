@@ -11,7 +11,7 @@ const Input = ({ placeholder, icon }) => {
       <input
         type="text"
         placeholder={placeholder}
-        className="outline-none focus:outline-none"
+        className="outline-none focus:outline-none w-full bg-transparent"
       />
     </div>
   );

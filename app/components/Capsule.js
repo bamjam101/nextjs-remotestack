@@ -1,8 +1,10 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import useFormState from "../hooks/useFormState";
 
-const Capsule = ({ label, isSelected }) => {
+const Capsule = ({ label, isSelected = true, onSelect }) => {
+  const { remove } = useFormState();
   return (
     <button
       type="button"
@@ -14,7 +16,11 @@ const Capsule = ({ label, isSelected }) => {
     >
       <span className="font-semibold text-sm capitalize">{label}</span>
       <span className="w-5 h-5 lg:w-6 lg:h-6 grid place-items-center">
-        {isSelected ? <AiOutlineClose /> : <FaPlus />}
+        {isSelected ? (
+          <AiOutlineClose onClick={() => remove(label)} />
+        ) : (
+          <FaPlus onClick={onSelect} />
+        )}
       </span>
     </button>
   );
