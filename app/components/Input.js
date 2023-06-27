@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ placeholder, icon }) => {
+const Input = ({ placeholder, icon, onChange, required }) => {
   return (
     <div className="p-3 lg:p-4 focus:outline-1 ring-1 flex items-center gap-x-4 ring-gray-400 outline-purple-900 rounded-md">
       {icon && (
@@ -12,6 +12,8 @@ const Input = ({ placeholder, icon }) => {
         type="text"
         placeholder={placeholder}
         className="outline-none focus:outline-none w-full bg-transparent"
+        onChange={onChange}
+        {...required}
       />
     </div>
   );

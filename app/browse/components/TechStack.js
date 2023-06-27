@@ -4,9 +4,10 @@ import { useState } from "react";
 import Capsule from "@/app/components/Capsule";
 import Input from "@/app/components/Input";
 import DropdownSelection from "./DropdownSelection";
-import useFormState from "@/app/hooks/useFormState";
+import useFormState from "@/app/hooks/useTechList";
+import Button from "@/app/components/Button";
 
-const TechStack = () => {
+const TechStack = ({ setStage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { add, remove, technologies: techs } = useFormState();
@@ -94,7 +95,12 @@ const TechStack = () => {
         <section className="flex justify-center flex-wrap gap-x-2 gap-y-4 mt-4 lg:mt-6">
           {/* Selected technologies capsule list */}
           {techs?.map((tech) => (
-            <Capsule key={tech} label={tech} />
+            <Capsule
+              key={tech}
+              label={tech}
+              technologies={technologies}
+              setTechnologies={setTechnologies}
+            />
           ))}
         </section>
         <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mt-4 lg:mt-6" />
@@ -109,6 +115,18 @@ const TechStack = () => {
             />
           ))}
         </section>
+        <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mb-4 lg:mb-6" />
+
+        {techs?.length ? (
+          <Button
+            label={"Continue"}
+            rounded
+            large
+            onClick={() => setStage(1)}
+          />
+        ) : (
+          <Button label={"Continue"} rounded large disabled />
+        )}
       </main>
     </section>
   );

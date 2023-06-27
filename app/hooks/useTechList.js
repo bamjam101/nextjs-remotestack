@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useFormState = create((set) => ({
+const useTechList = create((set) => ({
   technologies: [],
   add: (tech) =>
     set((state) => ({ technologies: [...state.technologies, tech] })),
@@ -11,4 +11,4 @@ const useFormState = create((set) => ({
   set: (techs) => set({ technologies: techs }),
 }));
 
-export default useFormState;
+export default useTechList;

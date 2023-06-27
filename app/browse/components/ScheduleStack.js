@@ -1,4 +1,8 @@
+"use client";
+
+import Button from "@/app/components/Button";
 import SelectCard from "@/app/components/SelectCard";
+import useFormData from "@/app/hooks/useFormData";
 import React from "react";
 import { BiConfused } from "react-icons/bi";
 import {
@@ -7,7 +11,8 @@ import {
   BsFillCalendarDayFill,
 } from "react-icons/bs";
 
-const ScheduleStack = () => {
+const ScheduleStack = ({ setStage }) => {
+  const { forms } = useFormData();
   return (
     <section className="h-full w-full flex flex-col justify-center items-center gap-4 transition-opacity duration-200">
       <header className="flex flex-col justify-center items-center gap-5">
@@ -18,24 +23,33 @@ const ScheduleStack = () => {
           Decide when you will start your project together!
         </p>
       </header>
-      <main className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4 lg:mt-6">
+      <main className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 my-4 lg:my-6">
         <SelectCard
+          stage={2}
           icon={<BsFillCalendarDayFill className="h-full w-full" />}
           label="Immediately"
         />
         <SelectCard
+          stage={2}
           icon={<BsFillCalendar2DateFill className="h-full w-full" />}
           label="In 1 or 2 weeks"
         />
         <SelectCard
+          stage={2}
           icon={<BsFillCalendar2MonthFill className="h-full w-full" />}
           label=">2 weeks later"
         />
         <SelectCard
+          stage={2}
           icon={<BiConfused className="h-full w-full" />}
           label="Not Sure"
         />
       </main>
+      {forms?.length > 1 ? (
+        <Button label={"Continue"} rounded large onClick={() => setStage(3)} />
+      ) : (
+        <Button label={"Continue"} rounded large disabled />
+      )}
     </section>
   );
 };

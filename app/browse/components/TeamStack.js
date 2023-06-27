@@ -1,5 +1,9 @@
+"use client";
+
+import Button from "@/app/components/Button";
 import SelectCard from "@/app/components/SelectCard";
-import React from "react";
+import useFormData from "@/app/hooks/useFormData";
+import { useEffect, useState } from "react";
 import {
   BiConfused,
   BiPieChart,
@@ -7,7 +11,8 @@ import {
   BiSolidPieChart,
 } from "react-icons/bi";
 
-const TeamStack = () => {
+const TeamStack = ({ setStage }) => {
+  const { forms } = useFormData();
   return (
     <section className="h-full w-full flex flex-col justify-center items-center gap-4 transition-opacity duration-200">
       <header className="flex flex-col justify-center items-center gap-5">
@@ -19,24 +24,33 @@ const TeamStack = () => {
           <span className="text-purple-900">15+</span> Engineers!
         </p>
       </header>
-      <main className="flex gap-6 justify-center items-center mt-4 lg:mt-6">
+      <main className="flex gap-6 justify-center items-center my-4 lg:my-6">
         <SelectCard
+          stage={1}
           icon={<BiSolidCoffee className="h-full w-full" />}
           label="One Engineer"
         />
         <SelectCard
+          stage={1}
           icon={<BiPieChart className="h-full w-full" />}
           label="Small Team"
         />
         <SelectCard
+          stage={1}
           icon={<BiSolidPieChart className="h-full w-full" />}
           label="Large Team"
         />
         <SelectCard
+          stage={1}
           icon={<BiConfused className="h-full w-full" />}
-          label="Not Sure"
+          label="I am not Sure"
         />
       </main>
+      {forms?.length ? (
+        <Button label={"Continue"} rounded large onClick={() => setStage(2)} />
+      ) : (
+        <Button label={"Continue"} rounded large disabled />
+      )}
     </section>
   );
 };

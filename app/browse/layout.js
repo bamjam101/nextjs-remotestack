@@ -1,5 +1,8 @@
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 export const metadata = {
   title: "RemoteStack | Find your developers",
@@ -11,9 +14,8 @@ export default function BrowseLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[108px] lg:px-[256px]  `}
+        className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[108px] lg:px-[256px] ${inter.className}`}
       >
-        <Header />
         {children}
         <Footer progress={""} />
       </body>

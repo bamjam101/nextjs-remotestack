@@ -1,12 +1,32 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import useFormState from "../hooks/useFormState";
+import useFormState from "../hooks/useTechList";
 
-const Capsule = ({ label, isSelected = true, onSelect }) => {
+const Capsule = ({
+  label,
+  isSelected = true,
+  onSelect,
+  technologies,
+  setTechnologies,
+}) => {
   const { remove } = useFormState();
   return (
     <button
+      onClick={
+        onSelect
+          ? onSelect
+          : () => {
+              setTechnologies([
+                ...technologies,
+                {
+                  name: label,
+                  isSelected: false,
+                },
+              ]);
+              remove(label);
+            }
+      }
       type="button"
       className={`rounded-full px-4 py-2 flex items-center justify-center gap-2 border-2 transition ${
         isSelected
@@ -16,11 +36,7 @@ const Capsule = ({ label, isSelected = true, onSelect }) => {
     >
       <span className="font-semibold text-sm capitalize">{label}</span>
       <span className="w-5 h-5 lg:w-6 lg:h-6 grid place-items-center">
-        {isSelected ? (
-          <AiOutlineClose onClick={() => remove(label)} />
-        ) : (
-          <FaPlus onClick={onSelect} />
-        )}
+        {isSelected ? <AiOutlineClose /> : <FaPlus />}
       </span>
     </button>
   );
