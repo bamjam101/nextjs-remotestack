@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[108px] lg:px-[256px] ${inter.className}`}
+        className={`bg-gray-100/50 text-gray-800 w-full px-10 sm:px-16 md:px-[86px] lg:px-[162px] xl:px-[256px] ${inter.className}`}
       >
         <Toaster />
         {children}

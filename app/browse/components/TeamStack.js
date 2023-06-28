@@ -16,15 +16,15 @@ const TeamStack = ({ setStage }) => {
   return (
     <section className="h-full w-full flex flex-col justify-center items-center gap-4 transition-opacity duration-200">
       <header className="flex flex-col justify-center items-center gap-5">
-        <h2 className="text-3xl font-bold">
+        <h2 className="text-2xl xl:text-3xl font-bold text-center">
           What skills would you like to see in your new team?
         </h2>
-        <p className="text-xl font-semibold text-gray-900/50">
+        <p className="text-base text-center md:text-xl font-semibold text-gray-900/50">
           We can provide assistance with{" "}
           <span className="text-purple-900">15+</span> Engineers!
         </p>
       </header>
-      <main className="flex gap-6 justify-center items-center my-4 lg:my-6">
+      <main className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 xl:gap-6 my-2 lg:my-4 xl:my-6">
         <SelectCard
           stage={1}
           icon={<BiSolidCoffee className="h-full w-full" />}

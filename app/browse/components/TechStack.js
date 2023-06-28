@@ -11,7 +11,7 @@ import useFormData from "@/app/hooks/useFormData";
 const TechStack = ({ setStage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { add: append, forms, remove: pop } = useFormData();
+  const { forms, add: append, remove: pop } = useFormData();
   const { add, technologies: techs } = useFormState();
 
   const [technologies, setTechnologies] = useState([
@@ -48,17 +48,17 @@ const TechStack = ({ setStage }) => {
       onClick={(e) => {
         setIsOpen(false);
       }}
-      className="h-full w-full flex flex-col justify-center items-center gap-2 transition-opacity duration-200"
+      className="h-full w-full flex flex-col justify-center items-center gap-2 lg:gap-3 xl:gap-5 transition-opacity duration-200"
     >
-      <header className="flex flex-col justify-center items-center gap-5">
-        <h2 className="text-3xl font-bold">
+      <header className="flex flex-col justify-center items-center gap-1 md:gap-2 lg:gap-3 xl:gap-5">
+        <h2 className="text-2xl xl:text-3xl font-bold text-center">
           What skills would you like to see in your new team?
         </h2>
-        <p className="text-xl font-semibold opacity-50">
+        <p className="text-base md:text-xl text-center font-semibold  text-gray-900/50">
           Select the desired areas of expertise
         </p>
       </header>
-      <main className="flex flex-col items-center gap-5 w-full mt-4 lg:mt-6">
+      <main className="flex flex-col items-center gap-2 lg:gap-3 xl:gap-5 w-full mt-2 lg:mt-4 xl:mt-6">
         <section className="w-full relative">
           <header
             className="peer"
@@ -94,7 +94,7 @@ const TechStack = ({ setStage }) => {
           )}
         </section>
 
-        <section className="flex justify-center flex-wrap gap-x-2 gap-y-4 mt-4 lg:mt-6">
+        <section className="flex justify-center flex-wrap gap-x-2 gap-y-2 md:gap-y-4 mt-2 lg:mt-4 xl:mt-6">
           {/* Selected technologies capsule list */}
           {techs?.map((tech) => (
             <Capsule
@@ -105,8 +105,8 @@ const TechStack = ({ setStage }) => {
             />
           ))}
         </section>
-        <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mt-4 lg:mt-6" />
-        <section className="flex justify-center flex-wrap gap-x-2 gap-y-4">
+        <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mt-2 lg:mt-4 xl:mt-6" />
+        <section className="flex justify-center flex-wrap gap-x-2 gap-y-2 md:gap-y-4">
           {/* Not selected technologies capsule list */}
           {technologies?.map((tech) => (
             <Capsule
@@ -117,7 +117,7 @@ const TechStack = ({ setStage }) => {
             />
           ))}
         </section>
-        <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mb-4 lg:mb-6" />
+        <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mb-2 lg:mb-4 xl:mb-6" />
 
         {techs?.length ? (
           <Button
@@ -125,11 +125,12 @@ const TechStack = ({ setStage }) => {
             rounded
             large
             onClick={() => {
-              setStage(1);
               if (forms?.length && forms[0].stage === 0) {
-                pop({ stage: 0, data: forms[0].data });
+                pop({ stage: 0, data: forms[0]?.data });
               }
               append({ stage: 0, data: techs });
+              setStage(1);
+              console.log(forms);
             }}
           />
         ) : (

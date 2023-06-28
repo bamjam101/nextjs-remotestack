@@ -6,7 +6,7 @@ const SiteTitle = ({ icon, title }) => {
       className={`pr-4 lg:pr-6 py-3 rounded-full lg:py-4 flex cursor-pointer gap-2 justify-center items-center opacity-90 focus:opcaity-100 outline-none focus:outline-none hover:opacity-100 transition`}
     >
       {icon && (
-        <span className="w-9 h-9 lg:w-11 lg:h-11 grid place-items-center">
+        <span className="w-7 h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 grid place-items-center">
           {icon}
         </span>
       )}

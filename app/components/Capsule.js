@@ -28,7 +28,7 @@ const Capsule = ({
             }
       }
       type="button"
-      className={`rounded-full px-4 py-2 flex items-center justify-center gap-2 border-2 transition ${
+      className={`rounded-full px-3 py-1 md:px-4 md:py-2 flex items-center justify-center gap-2 border-2 transition ${
         isSelected
           ? "bg-purple-900 text-gray-100 border-purple-900"
           : "bg-transparent border-gray-500"

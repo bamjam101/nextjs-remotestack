@@ -16,7 +16,7 @@ const Button = ({
       onClick={onClick && onClick}
       disabled={disabled}
       type={type || "button"}
-      className={`
+      className={`relative  
       ${rounded ? "rounded-full" : ""}
       ${
         gutterLeft ? "pr-4 lg:pr-6" : "px-4 lg:px-6"
@@ -34,7 +34,13 @@ const Button = ({
           {icon}
         </span>
       )}
-      <span className="font-semibold text-md">{label}</span>
+      <p className="font-semibold text-md">
+        {label === "Previous Section" ? (
+          <span className="hidden md:block">{label}</span>
+        ) : (
+          <span>{label}</span>
+        )}
+      </p>
     </button>
   );
 };

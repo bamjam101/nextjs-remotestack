@@ -11,7 +11,7 @@ const Input = ({ placeholder, icon, onChange, required }) => {
       <input
         type="text"
         placeholder={placeholder}
-        className="outline-none focus:outline-none w-full bg-transparent"
+        className="outline-none focus:outline-none w-full bg-transparent text-xs sm:text-sm md:text-base"
         onChange={onChange}
         {...required}
       />
