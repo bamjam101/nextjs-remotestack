@@ -11,10 +11,12 @@ import {
   BiSolidPieChart,
 } from "react-icons/bi";
 
-const TeamStack = ({ setStage }) => {
+const TeamStack = ({ setStage, style }) => {
   const { forms } = useFormData();
   return (
-    <section className="h-full w-full flex flex-col justify-center items-center gap-4 transition-opacity duration-200">
+    <section
+      className={`h-full w-full flex flex-col justify-center items-center gap-4 transition duration-500 delay-150 ${style}`}
+    >
       <header className="flex flex-col justify-center items-center gap-5">
         <h2 className="text-2xl xl:text-3xl font-bold text-center">
           What skills would you like to see in your new team?

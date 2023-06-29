@@ -29,7 +29,7 @@ const Header = ({ stage, setStage }) => {
         title="RemoteStack"
       />
       <div className="hidden md:block">
-        <Button rounded label="Progress" disabled />
+        <Button rounded label="Progress" disabled stage={stage} />
       </div>
     </header>
   );

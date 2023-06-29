@@ -2,7 +2,10 @@ import { create } from "zustand";
 
 const useFormData = create((set) => ({
   forms: [],
-  add: (form) => set((state) => ({ forms: [...state.forms, form] })),
+  add: (form, stage) =>
+    set((state) => ({
+      forms: stage === 1 ? [form, ...state.forms] : [...state.forms, form],
+    })),
   remove: (existingFrom) =>
     set((state) => ({
       forms: state.forms.filter((form) => form.stage !== existingFrom.stage),

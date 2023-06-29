@@ -13,10 +13,11 @@ import { MdEmail } from "react-icons/md";
 
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
+import useTechList from "@/app/hooks/useTechList";
 
-const Form = () => {
+const Form = ({ style }) => {
   const router = useRouter();
-
+  const { technologies } = useTechList();
   const { forms, add } = useFormData();
 
   const [contactData, setContactData] = useState({
@@ -28,15 +29,22 @@ const Form = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    add({ stage: 3, data: contactData });
     toast.success(
       "Details saved.\nThank you for contacting RemoteStack, our team will get back to you ASAP!\nTill then keep innovating 🚀"
     );
-    console.log(forms);
+    const data = {
+      0: technologies,
+      1: forms[0]?.data,
+      2: forms[1]?.data,
+      3: contactData,
+    };
+    console.log(data);
     // router.push("/");
   };
   return (
-    <section className="grid w-full grid-cols-1 md:grid-cols-2 gap-2 place-items-start">
+    <section
+      className={`grid w-full grid-cols-1 md:grid-cols-2 gap-2 place-items-start transition duration-500 delay-150 ${style}`}
+    >
       <div className="flex flex-col gap-6">
         <header className="text-2xl xl:text-3xl font-bold">
           When do you need the developer to start?

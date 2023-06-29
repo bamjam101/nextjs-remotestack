@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Capsule from "@/app/components/Capsule";
 import Input from "@/app/components/Input";
 import DropdownSelection from "./DropdownSelection";
 import useFormState from "@/app/hooks/useTechList";
 import Button from "@/app/components/Button";
-import useFormData from "@/app/hooks/useFormData";
 
-const TechStack = ({ setStage }) => {
+const TechStack = ({ setStage, style }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { forms, add: append, remove: pop } = useFormData();
   const { add, technologies: techs } = useFormState();
 
   const [technologies, setTechnologies] = useState([
@@ -43,12 +41,25 @@ const TechStack = ({ setStage }) => {
     add(techName);
   };
 
+  useEffect(() => {
+    technologies.map((tech) => {
+      if (tech.name in techs) {
+        setTechnologies(
+          technologies
+            .filter((technology) => technology.name !== tech.name)
+            .push({ name: tech.name, isSelected: true })
+        );
+        console.log(technologies);
+      }
+    });
+  }, []);
+
   return (
     <section
       onClick={(e) => {
         setIsOpen(false);
       }}
-      className="h-full w-full flex flex-col justify-center items-center gap-2 lg:gap-3 xl:gap-5 transition-opacity duration-200"
+      className={`h-full w-full flex flex-col justify-center items-center gap-2 lg:gap-3 xl:gap-5 transition duration-500 delay-150 ${style}`}
     >
       <header className="flex flex-col justify-center items-center gap-1 md:gap-2 lg:gap-3 xl:gap-5">
         <h2 className="text-2xl xl:text-3xl font-bold text-center">
@@ -108,14 +119,17 @@ const TechStack = ({ setStage }) => {
         <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mt-2 lg:mt-4 xl:mt-6" />
         <section className="flex justify-center flex-wrap gap-x-2 gap-y-2 md:gap-y-4">
           {/* Not selected technologies capsule list */}
-          {technologies?.map((tech) => (
-            <Capsule
-              key={tech.name}
-              label={tech.name}
-              isSelected={tech.isSelected}
-              onSelect={() => onSelect(tech.name)}
-            />
-          ))}
+          {technologies?.map((tech) => {
+            if (tech.isSelected) return;
+            return (
+              <Capsule
+                key={tech.name}
+                label={tech.name}
+                isSelected={tech.isSelected}
+                onSelect={() => onSelect(tech.name)}
+              />
+            );
+          })}
         </section>
         <hr className="bg-gray-500 w-full bg-opacity-50 h-[2px] mb-2 lg:mb-4 xl:mb-6" />
 
@@ -124,14 +138,7 @@ const TechStack = ({ setStage }) => {
             label={"Continue"}
             rounded
             large
-            onClick={() => {
-              if (forms?.length && forms[0].stage === 0) {
-                pop({ stage: 0, data: forms[0]?.data });
-              }
-              append({ stage: 0, data: techs });
-              setStage(1);
-              console.log(forms);
-            }}
+            onClick={() => setStage(1)}
           />
         ) : (
           <Button label={"Continue"} rounded large disabled />

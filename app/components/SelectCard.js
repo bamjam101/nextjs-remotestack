@@ -1,32 +1,22 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
 import useFormData from "../hooks/useFormData";
 
 const SelectCard = ({ icon, label, stage }) => {
-  const [isSelected, setIsSelected] = useState(false);
-
   const { add, remove, forms } = useFormData();
 
   const handleTeamData = () => {
-    if (forms.length > stage) {
-      remove({ stage: stage, data: forms[Number(stage)]?.data });
+    if (forms.length > stage - 1) {
+      remove({ stage: stage, data: forms[stage - 1]?.data });
     }
-    add({ stage: stage, data: label });
+    add({ stage: stage, data: label }, stage);
   };
 
-  useEffect(() => {
-    if (forms?.length) {
-      if (forms[Number(stage)]?.data == label) {
-        setIsSelected(true);
-      } else {
-        setIsSelected(false);
-      }
-    }
-  }, [forms]);
   return (
     <div
       onClick={handleTeamData}
       className={`p-6 sm:p-8 md:p-10 lg:p-14 rounded-lg flex flex-col items-center justify-center cursor-pointer gap-4 shadow-lg hover:bg-purple-900/50 ${
-        isSelected ? "bg-purple-900/50" : "undefined"
+        forms[stage - 1]?.data === label ? "bg-purple-900/50" : "undefined"
       }`}
     >
       <figure className="w-20 h-20 grid place-items-center">{icon}</figure>

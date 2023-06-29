@@ -11,10 +11,12 @@ import {
   BsFillCalendarDayFill,
 } from "react-icons/bs";
 
-const ScheduleStack = ({ setStage }) => {
+const ScheduleStack = ({ setStage, style }) => {
   const { forms } = useFormData();
   return (
-    <section className="h-full w-full flex flex-col justify-center items-center gap-4 transition-opacity duration-200">
+    <section
+      className={`h-full w-full flex flex-col justify-center items-center gap-4 transition duration-500 delay-150 ${style}`}
+    >
       <header className="flex flex-col justify-center items-center gap-5">
         <h2 className="text-2xl xl:text-3xl font-bold text-center">
           When do you need the developer to start?
